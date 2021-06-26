@@ -1,0 +1,22 @@
+<mat-toolbar>
+  <span>Imágenes Astronómicas de los 6 últimos días</span>
+</mat-toolbar>
+<div class="fondo">
+  <mat-grid-list cols="3" rowHeight="600px">
+      <mat-grid-tile *ngFor="let ob of this.objects">
+        <mat-card (click)="this.goDetails(ob)">
+          <mat-card-header>
+            <mat-card-title>{{ob.title}}</mat-card-title>
+            <mat-card-subtitle>{{ob.date}}</mat-card-subtitle>
+          </mat-card-header>
+          <img *ngIf="ob.media_type=='image'" mat-card-image [src]="ob.url" width="600" height="400">
+          <div *ngIf="ob.media_type!='image'" class="video-responsive">
+            <iframe frameborder="0" allowfullscreen="allowfullscreen" [src]="ob.url | safe"></iframe>
+          </div>
+          <mat-card-content>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
